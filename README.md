@@ -247,6 +247,53 @@ PR title: `level-3: Your Name`
 
 ---
 
+### Level 4 — For Those Who Want More (Bonus)
+
+**Already finished Level 3?** This is optional. It won't affect your place on the team — but it will affect how we see you.
+
+Level 4 combines two hard problems: **agent-to-agent communication** and **security hardening**. You build a system that works AND prove it can't be broken.
+
+#### The Challenge: Secure Agent Mesh
+
+Build two (or more) AI agents that:
+
+1. **Discover each other** using [A2A Agent Cards](https://google.github.io/A2A/) — each agent publishes a `.well-known/agent.json` describing its capabilities
+2. **Communicate** — Agent A asks Agent B a question, Agent B queries the LPI, returns an answer. The agents must exchange structured data, not just text.
+3. **Do something the LPI alone can't** — combine knowledge across agents. Example: one agent specializes in SMILE methodology, another in industry case studies. Together they produce a recommendation neither could alone.
+4. **Be hardened against attack** — your system must resist:
+   - Prompt injection (malicious inputs that try to override agent instructions)
+   - Data exfiltration (inputs designed to leak system prompts or internal data)
+   - Denial of service (inputs that cause infinite loops or resource exhaustion)
+   - Privilege escalation (one agent trying to make the other do something it shouldn't)
+
+#### What to Submit
+
+In `submissions/your-name/level4/`:
+
+- **Working code** — both agents, runnable with clear instructions
+- **Agent Cards** — valid A2A JSON for each agent
+- **Threat model** — what attacks did you consider? What's the attack surface?
+- **Security audit** — test your own system. Try to break it. Document what you found and what you fixed.
+- **Demo** — a recording, screenshot sequence, or transcript showing the agents working together
+
+#### Scoring (0-20)
+
+| Criteria | Points |
+|----------|--------|
+| Agents discover each other via A2A | 3 |
+| Structured data exchange (not just text) | 3 |
+| Combined output adds value beyond single agent | 4 |
+| Threat model covers real attack vectors | 3 |
+| Self-audit finds real issues | 3 |
+| Fixes are implemented, not just documented | 2 |
+| Code quality, documentation, explainability | 2 |
+
+PR title: `level-4: Your Name`
+
+**This is the deep end.** No hand-holding. No templates. If you can do this, you're not an intern — you're a contributor.
+
+---
+
 ## How the Program Works
 
 ### The Principle

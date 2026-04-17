@@ -25,6 +25,7 @@
         .ld-1{background:#68d391;box-shadow:0 0 4px rgba(72,187,120,0.4)}
         .ld-2{background:#63b3ed;box-shadow:0 0 4px rgba(99,179,237,0.4)}
         .ld-3{background:#b794f4;box-shadow:0 0 4px rgba(183,148,244,0.4)}
+        .ld-4{background:#f6ad55;box-shadow:0 0 6px rgba(246,173,85,0.5)}
 
         .stats-row{position:relative;z-index:1;display:flex;justify-content:center;gap:0.8rem;flex-wrap:wrap;margin:1.5rem auto;max-width:900px}
         .stat{background:rgba(26,32,53,0.8);border:1px solid rgba(99,179,237,0.12);border-radius:10px;padding:0.8rem 1.3rem;min-width:100px;text-align:center;transition:all 0.3s}
@@ -54,6 +55,7 @@
         .lv1{background:rgba(72,187,120,0.12);color:#68d391;border:1px solid rgba(72,187,120,0.3)}
         .lv2{background:rgba(99,179,237,0.12);color:#63b3ed;border:1px solid rgba(99,179,237,0.3)}
         .lv3{background:rgba(183,148,244,0.12);color:#b794f4;border:1px solid rgba(183,148,244,0.3);box-shadow:0 0 8px rgba(183,148,244,0.1)}
+        .lv4{background:rgba(246,173,85,0.15);color:#f6ad55;border:1px solid rgba(246,173,85,0.4);box-shadow:0 0 10px rgba(246,173,85,0.15)}
 
         a{color:#63b3ed;text-decoration:none}
         a:hover{text-decoration:underline}
@@ -73,6 +75,7 @@
         <div class="legend-item"><span class="legend-dot ld-1"></span> Registered — signed up</div>
         <div class="legend-item"><span class="legend-dot ld-2"></span> Running — dev tools working</div>
         <div class="legend-item"><span class="legend-dot ld-3"></span> Shipping — built an agent or deliverable</div>
+        <div class="legend-item"><span class="legend-dot ld-4"></span> Architect — secure agent mesh</div>
     </div>
     <!-- 🥚 -->
     <span style="position:absolute;top:1rem;right:1.5rem;font-size:0.55rem;cursor:default;user-select:none;-webkit-text-fill-color:#131a2e;color:#131a2e" title="You found it. Add found_easter_egg: true to your contributor JSON.">found_easter_egg</span>
@@ -96,6 +99,7 @@
         <input type="text" class="search-box" placeholder="Search by name, skill, or track..." oninput="filter()">
         <button class="fbtn active" onclick="setLevel('all',this)">All</button>
         <button class="fbtn" onclick="setLevel(3,this)">Shipping</button>
+        <button class="fbtn" onclick="setLevel(4,this)">Architect</button>
         <button class="fbtn" onclick="setLevel(2,this)">Running</button>
         <button class="fbtn" onclick="setLevel(1,this)">Registered</button>
         <span style="color:#2d3748;margin:0 0.3rem">|</span>
@@ -128,6 +132,7 @@
                 <span style="display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;background:#68d39120;color:#68d391;font-size:0.6rem;font-weight:700;font-family:'JetBrains Mono',monospace;border:1px solid #68d39140">1</span> Registered<br>
                 <span style="display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;background:#63b3ed20;color:#63b3ed;font-size:0.6rem;font-weight:700;font-family:'JetBrains Mono',monospace;border:1px solid #63b3ed40">2</span> Running<br>
                 <span style="display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;background:#b794f420;color:#b794f4;font-size:0.6rem;font-weight:700;font-family:'JetBrains Mono',monospace;border:1px solid #b794f440">3</span> Shipping<br>
+                <span style="display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;background:#f6ad5520;color:#f6ad55;font-size:0.6rem;font-weight:700;font-family:'JetBrains Mono',monospace;border:1px solid #f6ad5540">4</span> Architect<br>
                 <span style="font-size:0.65rem;color:#4a5568;margin-left:20px">L3 = guaranteed place</span><br>
                 <span style="font-size:0.65rem;color:#ed8936;margin-left:20px">2x = multiple tracks</span>
             </div>
@@ -175,8 +180,8 @@ let curLevel = 'all';
 let curTrack = 'all';
 let curSearch = '';
 
-const stageNames = {1:'Registered', 2:'Running', 3:'Shipping'};
-const stageClasses = {1:'lv1', 2:'lv2', 3:'lv3'};
+const stageNames = {1:'Registered', 2:'Running', 3:'Shipping', 4:'Architect'};
+const stageClasses = {1:'lv1', 2:'lv2', 3:'lv3', 4:'lv4'};
 
 // 🥚 If you're reading this source code, you found your first easter egg.
 // Add "found_easter_egg": true to your contributor JSON for bonus points.
@@ -304,7 +309,7 @@ function render() {
         const badges = (d._badges || []).map(b => `<span data-tip="${b.tip}" style="cursor:help;margin-left:0.2rem">${b.icon}</span>`).join('');
 
         // Level indicator + track count combined
-        const lvColors = {1:'#68d391',2:'#63b3ed',3:'#b794f4'};
+        const lvColors = {1:'#68d391',2:'#63b3ed',3:'#b794f4',4:'#f6ad55'};
         const trackCount = d.track ? d.track.split(/[,\/]/).filter(t => t.trim() && t.trim().match(/^[A-E]/)).length : 0;
         const multiTrack = trackCount > 1 ? `<span style="font-size:0.55rem;color:#ed8936;margin-left:1px" data-tip="${trackCount} tracks">${trackCount}x</span>` : '';
         const lvNum = `<span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:${lvColors[d.level]||'#718096'}20;color:${lvColors[d.level]||'#718096'};font-size:0.65rem;font-weight:700;font-family:'JetBrains Mono',monospace;margin-right:0.3rem;border:1px solid ${lvColors[d.level]||'#718096'}40">${d.level}</span>${multiTrack}`;
