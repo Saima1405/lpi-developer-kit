@@ -2,8 +2,6 @@
 
 ## Track: B — Digital Twin Analysis (Case Studies)
 
----
-
 ## Introduction
 
 Digital twins are virtual representations of real-world systems that use real-time data to simulate, analyze, and improve performance. They are widely used across industries like healthcare, smart cities, and manufacturing.
